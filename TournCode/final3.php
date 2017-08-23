@@ -1,0 +1,71 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="morris.css">
+<script>
+ function display_alert()
+ {
+ alert("Score Entered");
+ }
+ </script>
+<title>Final 3</title>
+</head>
+<body>
+<h1> Final 3</h1>
+<?php
+		//Connect to database
+		$con=mysqli_connect('localhost','root','');
+		//Select DB
+		mysqli_select_db($con,'saturdayskeeball');
+		
+		//Select Query
+		$sql= " SELECT * FROM qualifyingrounds WHERE through=3";
+		
+		//Execute query
+		$records=mysqli_query($con,$sql);
+		
+		
+
+?>
+<table>
+	<tr>
+		<th>Number</th>
+		<th>Name</th>
+		<th>Score(1)</th>
+		<th>Score(2)</th>
+		<th>Score(3)</th>
+		<th>Score(4)</th>
+		<th>Score(5)</th>
+		<th>Score(6)</th>
+		<th>Score(7)</th>
+		<th>Score(8)</th>
+		<th>Score(9)</th>
+		<th>Score(10)</th>
+		</tr>
+		
+	<?php
+		while($row= mysqli_fetch_array($records))
+		{
+			echo"<tr><form action= final3list.php method=post>";
+			echo"<td><input type=number name=number readonly=readonly value='".$row['number']."'</td>";
+			echo"<td><input type=text name=name readonly=readonly value='".$row['name']."'</td>";
+			echo"<td><input type=number name=final1 value='".$row['final1']."'</td>";
+			echo"<td><input type=number name=final2 value='".$row['final2']."'</td>";
+			echo"<td><input type=number name=final3 value='".$row['final3']."'</td>";
+			echo"<td><input type=number name=final4 value='".$row['final4']."'</td>";
+			echo"<td><input type=number name=final5 value='".$row['final5']."'</td>";
+			echo"<td><input type=number name=final6 value='".$row['final6']."'</td>";
+			echo"<td><input type=number name=final7 value='".$row['final7']."'</td>";
+			echo"<td><input type=number name=final8 value='".$row['final8']."'</td>";
+			echo"<td><input type=number name=final9 value='".$row['final9']."'</td>";
+			echo"<td><input type=number name=final10 value='".$row['final10']."'</td>";
+			echo"<td><input type=submit onclick=display_alert() value=Update>";
+			echo"</form></tr>";
+		}
+		
+		
+	?>
+		
+	</body>
+	<button class="bn"><a href="finish.php" >Finish</button></a><br><br>
+	<button class="return"><a href="top6.php" >Return to Previous Page</button></a><br><br>
+	</html>	
